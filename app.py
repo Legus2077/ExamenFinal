@@ -31,7 +31,7 @@ def login():
             conn = pyodbc.connect(conn_str)
             cursor = conn.cursor()
 
-            # Verifica si existe el encargado con ese correo y contraseña
+            # Verificar si existe el encargado con ese correo y contraseña
             cursor.execute("""
                 SELECT * FROM Encargados 
                 WHERE CorreoElectronico = ? AND ContrasenaHash = ?
@@ -41,13 +41,13 @@ def login():
             conn.close()
 
             if encargado:
-                return redirect(url_for('dashboard'))  # ✅ Éxito: ir a dashboard
+                return redirect(url_for('dashboard'))  
             else:
                 return render_template('login.html', error='Credenciales incorrectas')
         except Exception as e:
             return render_template('login.html', error=f"Error: {str(e)}")
     
-    # Si es GET, solo mostrar el formulario
+    
     return render_template('login.html')
 
 
@@ -275,7 +275,7 @@ def devolver_prestamo():
 @app.route('/registrar-libro', methods=['POST'])
 def registrar_libro():
     titulo = request.form.get('titulo')
-    isbn = request.form.get('isbn')  # Nuevo campo
+    isbn = request.form.get('isbn')  
     genero_id = request.form.get('genero_id')
     cantidad = request.form.get('cantidad')
 

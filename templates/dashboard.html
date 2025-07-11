@@ -13,7 +13,7 @@
   <div class="container mt-4">
     <h1 class="mb-4 text-center">📚 Sistema de Biblioteca</h1>
 
-    <!-- Botón de cerrar sesión arriba a la derecha -->
+    <!-- Botón de cerrar sesión -->
   <div class="text-end mb-3">
     <a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar sesión</a>
   </div>
@@ -104,7 +104,7 @@
 
       <div class="tab-pane fade" id="prestamos">
         <h4>🔄 Préstamos</h4>
-             <!-- FORMULARIO SOLO AQUÍ -->
+             <!-- FORMULARIO -->
             <form method="POST" action="/registrar-prestamo" class="mb-3">
               <div class="row">
                 <div class="col">
@@ -133,7 +133,7 @@
               <th>F. Esperada</th>
               <th>F. Devolución</th>
               <th>Estado</th>
-              <th>Acciones</th> <!-- ✅ Nueva columna -->
+              <th>Acciones</th> 
             </tr>
           </thead>
           <tbody>

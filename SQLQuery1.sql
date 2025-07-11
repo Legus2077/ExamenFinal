@@ -22,7 +22,6 @@ CREATE TABLE Usuarios (
 );
 
 -- 3. Tabla Autores (No se mantiene genera errores, se retira autores del codigo)
--- Si no necesitas una lista de autores en absoluto, puedes omitir esta tabla.
 /*CREATE TABLE Autores (
     AutorID INT PRIMARY KEY IDENTITY(1,1),
     Nombre NVARCHAR(100) NOT NULL,
@@ -30,28 +29,28 @@ CREATE TABLE Usuarios (
 );*/
 
 -- 4. Tabla Generos
--- Para clasificar los libros por género (mantenemos esta si es relevante para el BI)
+-- Para clasificar los libros por género 
 CREATE TABLE Generos (
     GeneroID INT PRIMARY KEY IDENTITY(1,1),
     NombreGenero NVARCHAR(100) UNIQUE NOT NULL
 );
 
--- 5. Tabla Libros - ACTUALIZADA: Sin AutorID y sin clave foránea a Autores
+-- 5. Tabla Libros - ACTUALIZADA: Se quita AutorID 
 CREATE TABLE Libros (
     LibroID INT PRIMARY KEY IDENTITY(1,1),
     Titulo NVARCHAR(255) NOT NULL,
     ISBN NVARCHAR(20) UNIQUE,
     AnioPublicacion INT,
     Paginas INT,
-    -- Clave foránea a Genero (se mantiene si es relevante para el BI)
-    GeneroID INT, -- Hacemos que sea opcional si no todos los libros tienen un género
+    
+    GeneroID INT, 
     CantidadTotal INT NOT NULL,
     CantidadDisponible INT NOT NULL,
     CONSTRAINT FK_Libros_Generos FOREIGN KEY (GeneroID) REFERENCES Generos(GeneroID)
 );
 
 
--- 6. Tabla Prestamos (Las claves foráneas se mantienen ya que referencian a Libros, Usuarios y Encargados)
+-- 6. Tabla Prestamos 
 CREATE TABLE Prestamos (
     PrestamoID INT PRIMARY KEY IDENTITY(1,1),
     LibroID INT NOT NULL,
@@ -67,11 +66,11 @@ CREATE TABLE Prestamos (
 );
 
 -- --- Datos de Prueba ---
--- 1. Insertar un Encargado (para que puedas iniciar sesión)
+-- 1. Insertar un Encargado (iniciar sesión)
 INSERT INTO Encargados (CorreoElectronico, ContrasenaHash, Nombre, Apellidos)
 VALUES ('admin@biblioteca.com', 'password_hash_ejemplo', 'Leonardo', 'Condori');
 
--- 2. Insertar algunos Géneros (si la tabla Generos se mantiene)
+-- 2. Insertar algunos Géneros (tabla Generos)
 INSERT INTO Generos (NombreGenero) VALUES ('Realismo Magico');
 INSERT INTO Generos (NombreGenero) VALUES ('Clasicos');
 INSERT INTO Generos (NombreGenero) VALUES ('Distopia');
@@ -92,7 +91,7 @@ VALUES ('Fortnite - La Guía Definitiva', '9781234567890', 5, 2, 2); -- GeneroID 
 
 
 
-
+--pruebas ....
 UPDATE Encargados
 SET CorreoElectronico = 'admin@biblioteca.com', ContrasenaHash = 'admin123'
 WHERE EncargadoID = 1;
